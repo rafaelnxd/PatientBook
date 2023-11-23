@@ -2,12 +2,16 @@
     {
         "Nome": "Carlos Henrique Calvo da Silva",
         "Idade": 21,
-        "Endere\u00e7o": "Rua Asama Lama Duma 23",
+        "Endere\u00e7o": "Rua Asama da SIlva",
         "Convenio": "Notredame",
         "Doen\u00e7as Preexistentes": [
             "Diabetes",
             "Hipertensao"
-        ]
+        ],
+        "Consulta": {
+            "Data": "2023-11-23",
+            "Hor\u00e1rio": "11:25:00"
+        }
     },
     {
         "Nome": "Rafael de Novaes",
@@ -26,6 +30,10 @@
         "Doen\u00e7as Preexistentes": [
             "Diabetes",
             "Hipertensao"
-        ]
+        ],
+        "Consulta": {
+            "Data": "2023-11-23",
+            "Hor\u00e1rio": "11:25:00"
+        }
     }
 ]
