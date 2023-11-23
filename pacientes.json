@@ -1,0 +1,27 @@
+[
+{
+    "Nome": "Carlos Henrique Calvo da Silva",
+    "Idade": 21,
+    "Endereço": "Rua Asama Lama Duma 23",
+    "Convenio": "Notredame",
+    "Doenças Preexistentes": ["Diabetes", "Hipertensão"]
+},
+{
+    "Nome": "Rafael de Novaes",
+    "Idade": 22,
+    "Endereço": "Rua Asama Lama Duma 22",
+    "Convenio": "Santa Casa",
+    "Doenças Preexistentes": "Asma"
+},
+{
+    "Nome": "Fabíola Falcão",
+    "Idade": 23,
+    "Endereço": "Rua Asama Lama Duma 21",
+    "Convenio": "ABC Instituto",
+    "Doenças Preexistentes": "Nenhuma"
+}
+
+
+
+
+]
