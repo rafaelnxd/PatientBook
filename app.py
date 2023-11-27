@@ -2,7 +2,12 @@ import streamlit as st
 import json
 import os
 
-
+st.set_page_config(
+    page_title="PatientBook",
+    page_icon=":clipboard:",
+    layout="wide",
+    initial_sidebar_state="auto",
+)
 
 def carregar_pacientes():
     try:
