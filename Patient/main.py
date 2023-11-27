@@ -3,6 +3,14 @@ from packages.patient_views import show_pacientes, show_editar_paciente, show_ma
 import streamlit as st
 
 def main():
+
+    st.set_page_config(
+        page_title="PatientBook",
+        page_icon="🏥",
+        layout="centered",
+        initial_sidebar_state="auto"
+    )
+
     st.title("PatientBook")
 
     ## Carrega os pacientes do arquivo pacientes.json
