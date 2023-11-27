@@ -5,17 +5,19 @@
         "Endere\u00e7o": "Endere\u00e7o do Rafael",
         "Convenio": "Conv\u00eanio do Rafael",
         "Doen\u00e7as Preexistentes": [
-            "Doen\u00e7a 1",
-            "Doen\u00e7a 2"
+            "Diabetes",
+            "Leptospirose"
         ],
         "Pr\u00f3xima Consulta": {
-            "Data": "2023-11-25",
-            "Hor\u00e1rio": "19:50:00"
+            "Data": "2023-11-27",
+            "Hor\u00e1rio": "20:53:00"
         },
-        "Consulta": {
-            "Data": "2023-11-25",
-            "Hor\u00e1rio": "18:59:00"
-        }
+        "Historico": [
+            {
+                "Data": "2023-11-25",
+                "Descri\u00e7\u00e3o": "Consulta de Rotina"
+            }
+        ]
     },
     {
         "Nome": "Fab\u00edola Falc\u00e3o",
@@ -23,29 +25,42 @@
         "Endere\u00e7o": "Endere\u00e7o da Fab\u00edola",
         "Convenio": "Conv\u00eanio da Fab\u00edola",
         "Doen\u00e7as Preexistentes": [
-            "Doen\u00e7a 3"
+            "Diabetes",
+            "Linfoma"
         ],
         "Pr\u00f3xima Consulta": {
-            "Data": "2023-11-25",
-            "Hor\u00e1rio": "19:29:00"
-        }
+            "Data": "2023-11-27",
+            "Hor\u00e1rio": "20:29:00"
+        },
+        "Historico": [
+            {
+                "Data": "2023-11-24",
+                "Descri\u00e7\u00e3o": "Consulta de Acompanhamento"
+            }
+        ]
     },
     {
         "Nome": "Carlos Henrique Calvo da Silva",
-        "Idade": 35,
+        "Idade": 23,
         "Endere\u00e7o": "Endere\u00e7o do Carlos",
         "Convenio": "Conv\u00eanio do Carlos",
         "Doen\u00e7as Preexistentes": [
-            "Doen\u00e7a 4",
-            "Doen\u00e7a 5"
+            "Diabetes",
+            "Linfoma"
         ],
         "Pr\u00f3xima Consulta": {
-            "Data": "2023-11-25",
-            "Hor\u00e1rio": "19:04:00"
+            "Data": "2023-11-27",
+            "Hor\u00e1rio": "19:53:00"
         },
-        "Consulta": {
-            "Data": "2023-11-24",
-            "Hor\u00e1rio": "09:15:00"
-        }
+        "Historico": [
+            {
+                "Data": "2023-11-24",
+                "Descri\u00e7\u00e3o": "Consulta de Rotina"
+            },
+            {
+                "Data": "2023-11-23",
+                "Descri\u00e7\u00e3o": "Retorno de Consulta"
+            }
+        ]
     }
 ]
