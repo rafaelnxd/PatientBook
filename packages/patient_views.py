@@ -153,8 +153,10 @@ def show_marcar_consulta(pacientes):
 
     
 def show_historico_paciente(paciente):
+     # Obtém o histórico médico do paciente
     historico = paciente.get("Histórico", [])
     
+     # Verifica se há registros no histórico e itera sobre cada evento
     if historico:
         for evento in historico:
             st.write(f"Data: {evento['Data']}")
@@ -174,6 +176,7 @@ def show_consultas(pacientes):
 
 
 def consulta_conflitante(pacientes, nova_data, novo_horario):
+    # Verifica se uma nova consulta tem conflito de data e horário com consultas existentes
     for paciente in pacientes:
         if "Próxima Consulta" in paciente:
             consulta_existente = paciente["Próxima Consulta"]
@@ -194,8 +197,10 @@ def formatar_proxima_consulta(consulta):
         return "Sem consulta marcada"
     
 def mostrar_pdf_exames_sangue(selected_patient):
+    ## Caminho para o arquivo PDF de exames de sangue do paciente selecionado
     path = os.path.join("sangue", f"{selected_patient}_exame.pdf")
 
+    ## Verifica se o arquivo PDF existe
     if os.path.exists(path):
         pdf_doc = fitz.open(path)
 
@@ -208,4 +213,6 @@ def mostrar_pdf_exames_sangue(selected_patient):
         pdf_doc.close()
     else:
         st.warning("PDF não encontrado.")
+
+
 
