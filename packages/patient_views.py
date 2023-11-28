@@ -111,7 +111,7 @@ def show_marcar_consulta(pacientes):
     selected_patient = st.selectbox("Selecione um paciente: ", [paciente["Nome"] for paciente in pacientes])
 
     ## Mostra o formulário para marcar a consulta para o paciente selecionado
-    if selected_patient:
+    if selected_patient:    
         paciente = next((p for p in pacientes if p["Nome"] == selected_patient), None)
         if paciente:
             st.write("Nome: ", paciente["Nome"])
@@ -126,14 +126,19 @@ def show_marcar_consulta(pacientes):
 
     
             ## Salva as informações da consulta no dicionário do paciente
-            paciente["Próxima Consulta"] = {
-                "Data": str(data_consulta),
-                "Horário": str(horario_consulta)
-            }
+            if st.button("Confirmar Consulta"):
+                ## Salva as informações da consulta no dicionário do paciente
+                paciente["Próxima Consulta"] = {
+                    "Data": str(data_consulta),
+                    "Horário": str(horario_consulta)
+                }
+                st.success("Consulta marcada com sucesso!")
 
             ## Salva as alterações no arquivo pacientes.json
             with open("pacientes.json", "w", encoding="utf-8") as file:
                 json.dump(pacientes, file, indent=4)
+
+            
 
 def show_historico_paciente(paciente):
     historico = paciente.get("Historico", [])
