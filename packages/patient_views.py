@@ -151,7 +151,6 @@ def show_marcar_consulta(pacientes):
             with open("pacientes.json", "w", encoding="utf-8") as file:
                 json.dump(pacientes, file, indent=4)
 
-    
 def show_historico_paciente(paciente):
      # Obtém o histórico médico do paciente
     historico = paciente.get("Histórico", [])
@@ -165,15 +164,14 @@ def show_historico_paciente(paciente):
     else:
         st.write("Nenhum registro no histórico médico.")
 
-
 def show_consultas(pacientes):
+    
     with st.expander("Próximas Consultas", expanded=False):
         for paciente in pacientes:
             if "Próxima Consulta" in paciente:
                 st.write(f"Nome: {paciente['Nome']}")
                 st.write(f"Próxima Consulta: {paciente['Próxima Consulta']['Data']} às {paciente['Próxima Consulta']['Horário']}")
                 st.write("---")
-
 
 def consulta_conflitante(pacientes, nova_data, novo_horario):
     # Verifica se uma nova consulta tem conflito de data e horário com consultas existentes
