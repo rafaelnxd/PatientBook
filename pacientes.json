@@ -8,11 +8,12 @@
             "Diabetes",
             "Leptospirose"
         ],
+        "Tipo Sangu\u00edneo": "A+",
         "Pr\u00f3xima Consulta": {
             "Data": "2023-12-02",
             "Hor\u00e1rio": "21:30:00"
         },
-        "Historico": [
+        "Hist\u00f3rico": [
             {
                 "Data": "2023-11-25",
                 "Descri\u00e7\u00e3o": "Consulta de Rotina"
@@ -28,11 +29,12 @@
             "Diabetes",
             "Linfoma"
         ],
+        "Tipo Sangu\u00edneo": "A+",
         "Pr\u00f3xima Consulta": {
             "Data": "2023-11-30",
             "Hor\u00e1rio": "22:00:00"
         },
-        "Historico": [
+        "Hist\u00f3rico": [
             {
                 "Data": "2023-11-24",
                 "Descri\u00e7\u00e3o": "Consulta de Acompanhamento"
@@ -48,11 +50,12 @@
             "Diabetes",
             "Linfoma"
         ],
+        "Tipo Sangu\u00edneo": "O+",
         "Pr\u00f3xima Consulta": {
             "Data": "2023-11-30",
             "Hor\u00e1rio": "21:12:00"
         },
-        "Historico": [
+        "Hist\u00f3rico": [
             {
                 "Data": "2023-11-24",
                 "Descri\u00e7\u00e3o": "Consulta de Rotina"

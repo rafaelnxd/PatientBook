@@ -32,7 +32,7 @@ def show_pacientes(pacientes):
             ## Mostra a edição de paciente
             editar_expander = st.expander("Editar Informações do Paciente")
             show_editar_paciente(editar_expander, pacientes, selected_patient)
-
+            
 
             
 def show_notas_paciente(pacientes):
@@ -165,6 +165,7 @@ def show_consultas(pacientes):
 
 
 def plot_doencas_comuns(pacientes):
+    st.subheader("Doenças Comuns entre os Pacientes")
     ## Coleta todas as doenças
     todas_doencas = [doenca.strip() for paciente in pacientes for doenca in paciente["Doenças Preexistentes"]]
 
@@ -188,3 +189,21 @@ def consulta_conflitante(pacientes, nova_data, novo_horario):
                 return True
 
     return False
+
+def verificar_t_sanguineo(pacientes):
+    st.subheader("Tipos Sanguíneos Predominantes")
+
+    ## Coleta todos os tipos sanguíneos
+    todos_tipos = [paciente.get("Tipo Sanguíneo", "").strip() for paciente in pacientes if "Tipo Sanguíneo" in paciente]
+
+    ## Cria um gráfico
+    plt.figure(figsize=(10, 6))
+    sns.countplot(y=todos_tipos, order=pd.Series(todos_tipos).value_counts().index)
+    plt.title("Tipos Sanguíneos Predominantes")
+    plt.xlabel("Número de Pacientes")
+    plt.ylabel("Tipos Sanguíneos")
+    
+    st.pyplot(plt)
+
+
+    

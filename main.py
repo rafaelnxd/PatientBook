@@ -1,5 +1,5 @@
 from packages.patient_data import carregar_pacientes
-from packages.patient_views import show_pacientes, show_editar_paciente, show_marcar_consulta, show_notas_paciente, show_consultas, plot_doencas_comuns
+from packages.patient_views import show_pacientes, show_editar_paciente, show_marcar_consulta, show_notas_paciente, show_consultas, plot_doencas_comuns, verificar_t_sanguineo
 import streamlit as st
 
 st.set_page_config(
@@ -29,6 +29,8 @@ def main():
         show_notas_paciente(pacientes)
     elif choice == "Estatísticas":
         plot_doencas_comuns(pacientes)
+        verificar_t_sanguineo(pacientes)
+
 
 if __name__ == "__main__":
     main()
