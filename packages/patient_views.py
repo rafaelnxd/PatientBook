@@ -33,8 +33,6 @@ def show_pacientes(pacientes):
             editar_expander = st.expander("Editar Informações do Paciente")
             show_editar_paciente(editar_expander, pacientes, selected_patient)
 
-            with st.expander("Tipos Comuns de Doenças"):
-                plot_doencas_comuns(pacientes)
 
             
 def show_notas_paciente(pacientes):
@@ -123,6 +121,11 @@ def show_marcar_consulta(pacientes):
             if data_consulta < datetime.now().date():
                 st.error("A data da consulta deve ser no futuro.")
                 return
+            
+            ## Verifica se já existe outra consulta marcada no mesmo horario e dia
+            if consulta_conflitante(pacientes, data_consulta, horario_consulta):
+                st.error("Já existe uma consulta marcada para esse dia e horário.")
+                return
 
     
             ## Salva as informações da consulta no dicionário do paciente
@@ -173,3 +176,15 @@ def plot_doencas_comuns(pacientes):
     plt.ylabel("Doenças")
     
     st.pyplot(plt)
+
+def consulta_conflitante(pacientes, nova_data, novo_horario):
+    for paciente in pacientes:
+        if "Próxima Consulta" in paciente:
+            consulta_existente = paciente["Próxima Consulta"]
+            data_existente = datetime.strptime(consulta_existente["Data"], "%Y-%m-%d").date()
+            horario_existente = datetime.strptime(consulta_existente["Horário"], "%H:%M:%S").time()
+
+            if data_existente == nova_data and horario_existente == novo_horario:
+                return True
+
+    return False

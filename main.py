@@ -1,5 +1,5 @@
 from packages.patient_data import carregar_pacientes
-from packages.patient_views import show_pacientes, show_editar_paciente, show_marcar_consulta, show_notas_paciente, show_consultas
+from packages.patient_views import show_pacientes, show_editar_paciente, show_marcar_consulta, show_notas_paciente, show_consultas, plot_doencas_comuns
 import streamlit as st
 
 st.set_page_config(
@@ -16,7 +16,7 @@ def main():
     pacientes = carregar_pacientes()
 
     ## Barra de Navegação
-    tabs = ["Pacientes","Notas pro Paciente", "Consultas" ]
+    tabs = ["Pacientes","Notas pro Paciente", "Consultas", "Estatísticas" ]
     choice = st.radio("Escolha uma opção: ", tabs)
 
     ## Mostra a página escolhida
@@ -27,6 +27,8 @@ def main():
         show_marcar_consulta(pacientes)
     elif choice == "Notas pro Paciente":
         show_notas_paciente(pacientes)
+    elif choice == "Estatísticas":
+        plot_doencas_comuns(pacientes)
 
 if __name__ == "__main__":
     main()
