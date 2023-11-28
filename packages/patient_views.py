@@ -22,8 +22,14 @@ def show_pacientes(pacientes):
             st.write("Idade: ", paciente["Idade"])
             st.write("Endereço: ", paciente["Endereço"])
             st.write("Convênio: ", paciente["Convenio"])
-            st.write("Doenças Preexistentes:", paciente["Doenças Preexistentes"])
-            st.write("Próxima Consulta: ", paciente.get("Próxima Consulta", "Sem consulta marcada"))
+            st.write("Doenças Preexistentes: ", ", ".join(paciente["Doenças Preexistentes"]))
+            st.write("Tipo Sanguíneo:", paciente.get("Tipo Sanguíneo", "Não informado"))
+
+             ## Formata e mostra a Próxima Consulta
+            proxima_consulta = paciente.get("Próxima Consulta", "Sem consulta marcada")
+            st.write("Próxima Consulta:", formatar_proxima_consulta(proxima_consulta))
+            
+           
 
             ## Mostra o histórico médico
             with st.expander("Histórico de Consultas"):
@@ -47,7 +53,10 @@ def show_notas_paciente(pacientes):
         if paciente:
             st.write("Nome: ", paciente["Nome"])
             st.write("Idade: ", paciente["Idade"])
-            st.write("Próxima Consulta: ", paciente.get("Próxima Consulta", "Sem consulta marcada"))
+
+             ## Formata e mostra a Próxima Consulta
+            proxima_consulta = paciente.get("Próxima Consulta", "Sem consulta marcada")
+            st.write("Próxima Consulta:", formatar_proxima_consulta(proxima_consulta))
 
             # Adiciona as notas para o paciente
             st.subheader("Recomendações Médicas: ")
@@ -91,6 +100,8 @@ def show_editar_paciente(expander, pacientes, selected_patient):
                 endereco = st.text_input("Endereço: ", value=paciente["Endereço"])
                 convenio = st.text_input("Convênio: ", value=paciente["Convenio"])
                 doencas_preexistentes = st.text_input("Doenças Preexistentes: ", value=", ".join(paciente["Doenças Preexistentes"]))
+            
+
 
                 ## Atualiza as informações do paciente no dicionário
                 paciente["Idade"] = idade
@@ -144,7 +155,7 @@ def show_marcar_consulta(pacientes):
             
 
 def show_historico_paciente(paciente):
-    historico = paciente.get("Historico", [])
+    historico = paciente.get("Histórico", [])
     
     if historico:
         for evento in historico:
@@ -165,18 +176,18 @@ def show_consultas(pacientes):
 
 
 def plot_doencas_comuns(pacientes):
-    st.subheader("Doenças Comuns entre os Pacientes")
-    ## Coleta todas as doenças
-    todas_doencas = [doenca.strip() for paciente in pacientes for doenca in paciente["Doenças Preexistentes"]]
+    with st.expander("Doenças Comuns entre os Pacientes"):
+        ## Coleta todas as doenças
+        todas_doencas = [doenca.strip() for paciente in pacientes for doenca in paciente["Doenças Preexistentes"]]
 
-    ## Cria um gráfico
-    plt.figure(figsize=(10, 6))
-    sns.countplot(y=todas_doencas, order=pd.Series(todas_doencas).value_counts().index)
-    plt.title("Tipos Comuns de Doenças")
-    plt.xlabel("Número de Pacientes")
-    plt.ylabel("Doenças")
-    
-    st.pyplot(plt)
+        ## Cria um gráfico
+        plt.figure(figsize=(10, 6))
+        sns.countplot(y=todas_doencas, order=pd.Series(todas_doencas).value_counts().index)
+        plt.title("Tipos Comuns de Doenças")
+        plt.xlabel("Número de Pacientes")
+        plt.ylabel("Doenças")
+        
+        st.pyplot(plt)
 
 def consulta_conflitante(pacientes, nova_data, novo_horario):
     for paciente in pacientes:
@@ -191,19 +202,27 @@ def consulta_conflitante(pacientes, nova_data, novo_horario):
     return False
 
 def verificar_t_sanguineo(pacientes):
-    st.subheader("Tipos Sanguíneos Predominantes")
+    with st.expander("Tipos Sanguíneos Predominantes"):
+        ## Coleta todos os tipos sanguíneos
+        todos_tipos = [paciente.get("Tipo Sanguíneo", "").strip() for paciente in pacientes if "Tipo Sanguíneo" in paciente]
 
-    ## Coleta todos os tipos sanguíneos
-    todos_tipos = [paciente.get("Tipo Sanguíneo", "").strip() for paciente in pacientes if "Tipo Sanguíneo" in paciente]
+        ## Cria um gráfico
+        plt.figure(figsize=(10, 6))
+        sns.countplot(y=todos_tipos, order=pd.Series(todos_tipos).value_counts().index)
+        plt.title("Tipos Sanguíneos Predominantes")
+        plt.xlabel("Número de Pacientes")
+        plt.ylabel("Tipos Sanguíneos")
+        
+        st.pyplot(plt)
 
-    ## Cria um gráfico
-    plt.figure(figsize=(10, 6))
-    sns.countplot(y=todos_tipos, order=pd.Series(todos_tipos).value_counts().index)
-    plt.title("Tipos Sanguíneos Predominantes")
-    plt.xlabel("Número de Pacientes")
-    plt.ylabel("Tipos Sanguíneos")
-    
-    st.pyplot(plt)
+def formatar_proxima_consulta(consulta):
+    if consulta != "Sem consulta marcada":
+        data_consulta = datetime.strptime(consulta["Data"], "%Y-%m-%d").strftime("%d-%m-%Y")
+        horario_consulta = consulta["Horário"]
+        return f" {data_consulta} às {horario_consulta}"
+    else:
+        return "Sem consulta marcada"
+
 
 
     
