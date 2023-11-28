@@ -4,7 +4,7 @@
 O PatientBook é uma aplicação simples para gerenciamento de pacientes em um ambiente médico. Ele permite que médicos e profissionais de saúde visualizem informações dos pacientes, registrem consultas, façam upload de prescrições e exames, e visualizem estatísticas sobre o tipo sanguíneo e doenças predominantes.
 
 ## Funcionalidades
-- **Lista de Pacientes:** Visualize informações relevantes sobre o paciente, como nome, idade, endereço, doenças preexistentes, tipo sanguíneo, próxima consulta, histórico de consultas, exame de sangue e até mesmo edite informações sobre ele.
+- **Lista de Pacientes:** Visualize informações relevantes sobre o paciente, como nome, idade, endereço, doenças preexistentes, tipo sanguíneo, próxima consulta, convênio, histórico de consultas, exame de sangue e até mesmo edite informações sobre ele.
 
 - **Notas para o Paciente:** Adicione recomendações médicas e faça upload de prescrições e exames.
 
