@@ -6,6 +6,10 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import os
+import fitz
+
+
 
 
 def show_pacientes(pacientes):
@@ -30,15 +34,19 @@ def show_pacientes(pacientes):
             st.write("Próxima Consulta:", formatar_proxima_consulta(proxima_consulta))
             
            
-
             ## Mostra o histórico médico
             with st.expander("Histórico de Consultas"):
                 show_historico_paciente(paciente)
+
+            with st.expander("Exame de Sangue"):
+                mostrar_pdf_exames_sangue(selected_patient)
 
             ## Mostra a edição de paciente
             editar_expander = st.expander("Editar Informações do Paciente")
             show_editar_paciente(editar_expander, pacientes, selected_patient)
             
+        
+
 
             
 def show_notas_paciente(pacientes):
@@ -222,7 +230,19 @@ def formatar_proxima_consulta(consulta):
         return f" {data_consulta} às {horario_consulta}"
     else:
         return "Sem consulta marcada"
-
-
-
     
+def mostrar_pdf_exames_sangue(selected_patient):
+    path = os.path.join("sangue", f"{selected_patient}_exame.pdf")
+
+    if os.path.exists(path):
+        pdf_doc = fitz.open(path)
+
+        for page_num in range(pdf_doc.page_count):
+            page = pdf_doc[page_num]
+            image_bytes = page.get_pixmap().tobytes()
+
+            st.image(image_bytes, use_column_width=True)
+
+        pdf_doc.close()
+    else:
+        st.warning("PDF não encontrado.")
