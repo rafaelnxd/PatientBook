@@ -3,13 +3,8 @@ from .patient_files import salvar_exames, salvar_prescricao, salvar_notas
 import streamlit as st
 import json
 from datetime import datetime, timedelta
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
 import os
 import fitz
-
-
 
 
 def show_pacientes(pacientes):
@@ -44,11 +39,7 @@ def show_pacientes(pacientes):
             ## Mostra a edição de paciente
             editar_expander = st.expander("Editar Informações do Paciente")
             show_editar_paciente(editar_expander, pacientes, selected_patient)
-            
-        
-
-
-            
+              
 def show_notas_paciente(pacientes):
     st.subheader("Notas para o Paciente")
 
@@ -160,8 +151,7 @@ def show_marcar_consulta(pacientes):
             with open("pacientes.json", "w", encoding="utf-8") as file:
                 json.dump(pacientes, file, indent=4)
 
-            
-
+    
 def show_historico_paciente(paciente):
     historico = paciente.get("Histórico", [])
     
@@ -183,20 +173,6 @@ def show_consultas(pacientes):
                 st.write("---")
 
 
-def plot_doencas_comuns(pacientes):
-    with st.expander("Doenças Comuns entre os Pacientes"):
-        ## Coleta todas as doenças
-        todas_doencas = [doenca.strip() for paciente in pacientes for doenca in paciente["Doenças Preexistentes"]]
-
-        ## Cria um gráfico
-        plt.figure(figsize=(10, 6))
-        sns.countplot(y=todas_doencas, order=pd.Series(todas_doencas).value_counts().index)
-        plt.title("Tipos Comuns de Doenças")
-        plt.xlabel("Número de Pacientes")
-        plt.ylabel("Doenças")
-        
-        st.pyplot(plt)
-
 def consulta_conflitante(pacientes, nova_data, novo_horario):
     for paciente in pacientes:
         if "Próxima Consulta" in paciente:
@@ -208,20 +184,6 @@ def consulta_conflitante(pacientes, nova_data, novo_horario):
                 return True
 
     return False
-
-def verificar_t_sanguineo(pacientes):
-    with st.expander("Tipos Sanguíneos Predominantes"):
-        ## Coleta todos os tipos sanguíneos
-        todos_tipos = [paciente.get("Tipo Sanguíneo", "").strip() for paciente in pacientes if "Tipo Sanguíneo" in paciente]
-
-        ## Cria um gráfico
-        plt.figure(figsize=(10, 6))
-        sns.countplot(y=todos_tipos, order=pd.Series(todos_tipos).value_counts().index)
-        plt.title("Tipos Sanguíneos Predominantes")
-        plt.xlabel("Número de Pacientes")
-        plt.ylabel("Tipos Sanguíneos")
-        
-        st.pyplot(plt)
 
 def formatar_proxima_consulta(consulta):
     if consulta != "Sem consulta marcada":
@@ -246,3 +208,4 @@ def mostrar_pdf_exames_sangue(selected_patient):
         pdf_doc.close()
     else:
         st.warning("PDF não encontrado.")
+

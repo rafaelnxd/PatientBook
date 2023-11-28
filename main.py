@@ -1,5 +1,6 @@
 from packages.patient_data import carregar_pacientes
-from packages.patient_views import show_pacientes, show_editar_paciente, show_marcar_consulta, show_notas_paciente, show_consultas, plot_doencas_comuns, verificar_t_sanguineo
+from packages.patient_views import show_pacientes, show_editar_paciente, show_marcar_consulta, show_notas_paciente, show_consultas
+from packages.patient_charts import plot_doencas_comuns, verificar_t_sanguineo
 import streamlit as st
 
 st.set_page_config(
