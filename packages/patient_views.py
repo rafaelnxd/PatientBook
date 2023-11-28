@@ -95,18 +95,20 @@ def show_editar_paciente(expander, pacientes, selected_patient):
             paciente = next((p for p in pacientes if p["Nome"] == selected_patient), None)
             if paciente:
                 st.write("Nome: ", paciente["Nome"])
-                idade = st.number_input("Idade: ", value=paciente["Idade"])
+                st.write("Idade: ", paciente["Idade"])
+                tipo_sanguineo = st.write("Tipo Sanguíneo: ", paciente["Tipo Sanguíneo"])
                 endereco = st.text_input("Endereço: ", value=paciente["Endereço"])
                 convenio = st.text_input("Convênio: ", value=paciente["Convenio"])
                 doencas_preexistentes = st.text_input("Doenças Preexistentes: ", value=", ".join(paciente["Doenças Preexistentes"]))
+                
+
             
-
-
                 ## Atualiza as informações do paciente no dicionário
-                paciente["Idade"] = idade
                 paciente["Endereço"] = endereco
                 paciente["Convenio"] = convenio
                 paciente["Doenças Preexistentes"] = [d.strip() for d in doencas_preexistentes.split(",")]
+                
+
 
                 ## Salva as alterações no arquivo pacientes.json
                 with open("pacientes.json", "w", encoding="utf-8") as file:
@@ -127,7 +129,7 @@ def show_marcar_consulta(pacientes):
             horario_consulta = st.time_input(f"Horário da Consulta : ", key=f"horario_consulta_{selected_patient}")
 
 
-            ## Verifica se a data é no futur
+            ## Verifica se a data é no futuro
             if data_consulta < datetime.now().date():
                 st.error("A data da consulta deve ser no futuro.")
                 return
@@ -165,7 +167,6 @@ def show_historico_paciente(paciente):
         st.write("Nenhum registro no histórico médico.")
 
 def show_consultas(pacientes):
-    
     with st.expander("Próximas Consultas", expanded=False):
         for paciente in pacientes:
             if "Próxima Consulta" in paciente:

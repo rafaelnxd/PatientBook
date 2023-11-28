@@ -1,7 +1,7 @@
 import os
 
 def salvar_exames(upload, paciente_nome):
-    ## Cria o diretório "exames" se não existir
+    ## Cria o diretório exames se não existir
     if not os.path.exists("exames"):
         os.makedirs("exames")
 

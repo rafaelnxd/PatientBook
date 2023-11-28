@@ -11,6 +11,7 @@ st.set_page_config(
 )
 
 def main():
+    
     st.title("PatientBook🧑‍⚕️")
 
     ## Carrega os pacientes do arquivo pacientes.json

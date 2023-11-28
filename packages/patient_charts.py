@@ -3,12 +3,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
+# Função para criar um gráfico com os tipos sanguíneos dos pacientes
 def verificar_t_sanguineo(pacientes):
     with st.expander("Tipos Sanguíneos Predominantes"):
+        
         ## Coleta todos os tipos sanguíneos
         todos_tipos = [paciente.get("Tipo Sanguíneo", "").strip() for paciente in pacientes if "Tipo Sanguíneo" in paciente]
 
-        ## Cria um gráfico
+        ## Cria um gráfico de contagem de tipos
         plt.figure(figsize=(10, 6))
         sns.countplot(y=todos_tipos, order=pd.Series(todos_tipos).value_counts().index)
         plt.title("Tipos Sanguíneos Predominantes")
@@ -16,7 +18,6 @@ def verificar_t_sanguineo(pacientes):
         plt.ylabel("Tipos Sanguíneos")
         
         st.pyplot(plt)
-
 
 
 def plot_doencas_comuns(pacientes):
